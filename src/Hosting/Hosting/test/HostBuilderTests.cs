@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Testing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -398,9 +400,36 @@ namespace Microsoft.Extensions.Hosting
             }
         }
 
+        #region zf.添加代码
+        class PerformanceMetricsCollertor : IHostedService
+        {
+            public Task StartAsync(CancellationToken cancellationToken)
+            {
+                throw new NotImplementedException();
+            }
+
+            public Task StopAsync(CancellationToken cancellationToken)
+            {
+                throw new NotImplementedException();
+            }
+        }
+        #endregion
+
         [Fact]
         public void ConfigureCustomServiceProvider()
         {
+
+
+            #region zf.添加代码.2020.06.26
+
+            //<框架揭秘>.379页中的代码
+            new HostBuilder()
+                    .ConfigureServices(svcs => svcs.AddHostedService<PerformanceMetricsCollertor>())
+                    .ConfigureLogging(builder => builder.AddConsole())
+                    .Build().Run() ;
+
+
+            #endregion
             var hostBuilder = new HostBuilder()
                 .ConfigureServices((hostContext, s) =>
                 {

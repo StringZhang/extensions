@@ -9,6 +9,7 @@
     <PackageTags>hosting</PackageTags>
     <IsPackable>true</IsPackable>
     <IsShipping>true</IsShipping>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
   <ItemGroup>

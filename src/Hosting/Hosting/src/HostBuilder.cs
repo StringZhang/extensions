@@ -39,7 +39,9 @@ namespace Microsoft.Extensions.Hosting
         /// for use later in the build process. This can be called multiple times and the results will be additive.
         /// </summary>
         /// <param name="configureDelegate">The delegate for configuring the <see cref="IConfigurationBuilder"/> that will be used
-        /// to construct the <see cref="IConfiguration"/> for the host.</param>
+        /// to construct the <see cref="IConfiguration"/> for the host.
+        /// zf.添加注释.可以利用它注册不同的配置源或者做相应的设置(如.设置配置文件所在目录的基础路径)
+        /// </param>
         /// <returns>The same instance of the <see cref="IHostBuilder"/> for chaining.</returns>
         public IHostBuilder ConfigureHostConfiguration(Action<IConfigurationBuilder> configureDelegate)
         {
@@ -124,6 +126,8 @@ namespace Microsoft.Extensions.Hosting
             }
             _hostBuilt = true;
 
+            //zf.添加代码.顺序.
+            //??.{Build}和{Create}区别
             BuildHostConfiguration();
             CreateHostingEnvironment();
             CreateHostBuilderContext();
